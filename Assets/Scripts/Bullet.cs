@@ -6,6 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject target;
+    public GameObject hitEffect;
 
     public float speed = 70f;
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class Bullet : MonoBehaviour
 
     void HitTarget()
     {
-        
+        Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(this.GameObject());
     }
 }

@@ -13,19 +13,15 @@ public class Turret : MonoBehaviour
     public float range = 15f;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+    public float turnSpeed = 10f;
     
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public GameObject partToRotate;
-
     public GameObject bulletPrefab;
     public GameObject firePoint;
-    
-    
-    public float turnSpeed = 10f;
-
-    
-    
+    public GameObject muzzleFlash;
+    public GameObject smokePoof;
     
     // Start is called before the first frame update
     void Start()
@@ -54,6 +50,8 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
+        Instantiate(muzzleFlash, firePoint.transform.position, firePoint.transform.rotation);
+        // Instantiate(smokePoof, firePoint.transform.position, firePoint.transform.rotation);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
         Bullet script = bullet.GetComponent<Bullet>();
         script.Seek(target);
