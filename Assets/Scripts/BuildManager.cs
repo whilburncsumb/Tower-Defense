@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
-    private GameObject turretToBuild;
+    private TurretBluePrint turretToBuild;
     public GameObject standardTurretPrefab;
     public GameObject missileTurretPrefab;
 
@@ -20,13 +21,28 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject GetTurretToBuild()
+    public bool CanBuild
     {
-        return turretToBuild;
+        get { return turretToBuild != null; }
     }
 
-    public void SetTurretToBuild(GameObject turret)
+    public void SelectTurretToBuild(TurretBluePrint turret)
     {
         turretToBuild = turret;
+    }
+
+    public void BuildTurretOn(Node node)
+    {
+        if (PlayerStats.Money < turretToBuild.cost)
+        {
+            Debug.Log("Not enough munny to build that. lol");
+            return;
+        }
+        PlayerStats.Money -= turretToBuild.cost;
+        
+        GameObject turret = Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
+        node.turret = turret;
+        
+        Debug.Log("Turret build, Money left: " + PlayerStats.Money);
     }
 }
