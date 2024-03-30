@@ -10,9 +10,11 @@ public class Node : MonoBehaviour
     
     public Color hoverColor;
     public Vector3 positionOffset;
+    public Color notEnoughMoneyColor;
 
     [Header("Optional")] 
     public GameObject turret;
+    
     private Color startColor;
     private Renderer rend;
     
@@ -48,14 +50,13 @@ public class Node : MonoBehaviour
     private void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())
-        {
             return;
-        }
-        if (_buildManager.CanBuild)
-        {
+        if (!_buildManager.CanBuild)
             return;
-        }
-        rend.material.color = hoverColor;
+        if (_buildManager.HasMoney)
+            rend.material.color = hoverColor;
+        else
+            rend.material.color = notEnoughMoneyColor;
     }
 
     private void OnMouseExit()
