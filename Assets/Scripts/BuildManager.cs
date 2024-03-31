@@ -8,8 +8,6 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
     private TurretBluePrint turretToBuild;
-    public GameObject standardTurretPrefab;
-    public GameObject missileTurretPrefab;
     public GameObject buildEffect;
 
     private void Awake()

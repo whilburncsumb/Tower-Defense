@@ -9,16 +9,21 @@ public class Turret : MonoBehaviour
 
     private GameObject target;
     
-    [Header("Attributes")]
+    [Header("General")]
     public float range = 15f;
+    public float turnSpeed = 10f;
+    [Header("Use Bullets")]
     public float fireRate = 1f;
     private float fireCountdown = 0f;
-    public float turnSpeed = 10f;
+    public GameObject bulletPrefab;
+
+    [Header("Use Laser")] 
+    public bool useLaser = false;
+    public LineRenderer lineRenderer;
     
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public GameObject partToRotate;
-    public GameObject bulletPrefab;
     public GameObject firePoint;
     public GameObject muzzleFlash;
     public GameObject smokePoof;
@@ -34,24 +39,53 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
         {
+            if (useLaser && lineRenderer.enabled)
+            {
+                lineRenderer.enabled = false;
+            }
             return;
         }
 
         TrackTarget();
-        
-        if (fireCountdown <= 0)
+        if (useLaser)
         {
-            Shoot();
-            fireCountdown = 1f / fireRate;
+            Laser();
         }
-        fireCountdown -= Time.deltaTime;
-        
+        else
+        {
+            if (fireCountdown <= 0)
+            {
+                Shoot();
+                fireCountdown = 1f / fireRate;
+            }
+            fireCountdown -= Time.deltaTime;
+        }
+    }
+
+    void Laser()
+    {
+        if (!lineRenderer.enabled)
+        {
+            lineRenderer.enabled = true;
+        }
+        lineRenderer.SetPosition(0,firePoint.transform.position);
+        lineRenderer.SetPosition(1,target.transform.position);
     }
 
     void Shoot()
     {
-        Instantiate(muzzleFlash, firePoint.transform.position, firePoint.transform.rotation);
-        // Instantiate(smokePoof, firePoint.transform.position, firePoint.transform.rotation);
+        if (muzzleFlash != null)
+        { 
+            GameObject m = Instantiate(muzzleFlash, firePoint.transform.position, firePoint.transform.rotation);
+            Destroy(m,5f);
+        }
+
+        if (smokePoof != null)
+        {
+            GameObject s = Instantiate(smokePoof, firePoint.transform.position, firePoint.transform.rotation);
+            Destroy(s,5f);
+        }
+        
         GameObject bullet = Instantiate(bulletPrefab, firePoint.transform.position, firePoint.transform.rotation);
         Bullet script = bullet.GetComponent<Bullet>();
         script.Seek(target);

@@ -38,7 +38,7 @@ public class Node : MonoBehaviour
         {
             return;
         }
-        if (currentTurret != null)
+        if (turret != null)
         {
             Debug.Log("Cannot build here");
             return;

@@ -9,9 +9,9 @@ public class Bullet : MonoBehaviour
 {
     private GameObject target;
     public GameObject hitEffect;
-
+    [Header("Stats")]
     public float speed = 70f;
-
+    public int damage = 50;
     public float explosionRadius = 0f;
     // Start is called before the first frame update
     public void Seek(GameObject target_)
@@ -58,7 +58,11 @@ public class Bullet : MonoBehaviour
 
     void Damage(GameObject enemy)
     {
-        Destroy(enemy.GameObject());
+        Enemy e = enemy.GetComponent<Enemy>();
+        if (e != null)
+        {
+            e.TakeDamage(damage);
+        }
     }
 
     void Explode()
