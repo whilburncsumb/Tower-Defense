@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
@@ -20,6 +21,8 @@ public class Turret : MonoBehaviour
     [Header("Use Laser")] 
     public bool useLaser = false;
     public LineRenderer lineRenderer;
+    public ParticleSystem muzzleSparks;
+    public ParticleSystem hitSparks;
     
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -42,6 +45,8 @@ public class Turret : MonoBehaviour
             if (useLaser && lineRenderer.enabled)
             {
                 lineRenderer.enabled = false;
+                muzzleSparks.Stop();
+                hitSparks.Stop();
             }
             return;
         }
@@ -67,7 +72,14 @@ public class Turret : MonoBehaviour
         if (!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
+            muzzleSparks.Play();
+            hitSparks.Play();
         }
+        
+        Vector3 dir = firePoint.transform.position - target.transform.position;
+        hitSparks.transform.rotation = Quaternion.LookRotation(dir);
+        hitSparks.transform.position = target.transform.position + dir.normalized;
+        
         lineRenderer.SetPosition(0,firePoint.transform.position);
         lineRenderer.SetPosition(1,target.transform.position);
     }
