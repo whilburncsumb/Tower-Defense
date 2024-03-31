@@ -23,6 +23,10 @@ public class Turret : MonoBehaviour
     public LineRenderer lineRenderer;
     public ParticleSystem muzzleSparks;
     public ParticleSystem hitSparks;
+    public GameObject glow1;
+    public GameObject glow2;
+    private Light light1;
+    private Light light2;
     
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -35,6 +39,12 @@ public class Turret : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateTarget",0f,0.5f);
+        if (useLaser)
+        {
+            light1 = glow1.GetComponent<Light>();
+            light2 = glow2.GetComponent<Light>();
+        }
+
     }
 
     // Update is called once per frame
@@ -47,6 +57,8 @@ public class Turret : MonoBehaviour
                 lineRenderer.enabled = false;
                 muzzleSparks.Stop();
                 hitSparks.Stop();
+                light1.enabled = false;
+                light2.enabled = false;
             }
             return;
         }
@@ -74,6 +86,8 @@ public class Turret : MonoBehaviour
             lineRenderer.enabled = true;
             muzzleSparks.Play();
             hitSparks.Play();
+            light1.enabled = true;
+            light2.enabled = true;
         }
         
         Vector3 dir = firePoint.transform.position - target.transform.position;
