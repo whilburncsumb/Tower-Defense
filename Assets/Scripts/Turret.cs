@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour
 {
 
     private GameObject target;
+    private Enemy targetEnemy;
     
     [Header("General")]
     public float range = 15f;
@@ -27,6 +28,8 @@ public class Turret : MonoBehaviour
     public GameObject glow2;
     private Light light1;
     private Light light2;
+    public int damageOverTime = 30;
+    public float slowPercentage = .5f;
     
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -81,6 +84,9 @@ public class Turret : MonoBehaviour
 
     void Laser()
     {
+        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
+        targetEnemy.Slow(slowPercentage);
+        
         if (!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
@@ -145,6 +151,7 @@ public class Turret : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy;
+            targetEnemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
         {
