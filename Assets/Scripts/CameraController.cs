@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
             transform.Translate(new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"))*panSpeed * Time.deltaTime,Space.World);
             MouseMovement();
             // Debug.Log("horizontal: " + Input.GetAxis("Horizontal"));
-            // Debug.Log("vertical: " + Input.GetAxis("Vertical"));
+            Debug.Log("vertical: " + Input.GetAxis("Vertical"));
         }
         
     }
