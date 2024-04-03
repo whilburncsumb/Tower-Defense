@@ -69,6 +69,7 @@ public class Node : MonoBehaviour
         
         GameObject _turret = Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
         turret = _turret;
+        turretBluePrint = blueprint;
 
         GameObject effect = Instantiate(_buildManager.buildEffect, GetBuildPosition(), Quaternion.identity);
         Destroy(effect, 3f);

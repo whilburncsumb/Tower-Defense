@@ -20,6 +20,7 @@ public class NodeUI : MonoBehaviour
 
     public void Upgrade()
     {
+        Debug.Log("Upgrade turret clicked");
         Target.UpgradeTurret();
         BuildManager.instance.DeselectNode();
     }
