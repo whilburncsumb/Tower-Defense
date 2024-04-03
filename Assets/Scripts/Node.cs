@@ -34,13 +34,19 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!_buildManager.CanBuild)
+        if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
+        
+
         if (turret != null)
         {
-            Debug.Log("Cannot build here");
+            _buildManager.SelectNode(this);
+            return;
+        }
+        if (!_buildManager.CanBuild)
+        {
             return;
         }
 

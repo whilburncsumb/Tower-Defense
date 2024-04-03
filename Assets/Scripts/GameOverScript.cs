@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameOverScript : MonoBehaviour
 {
     public Text roundsText;
+    
 
     private void OnEnable()
     {
         roundsText.text = PlayerStats.Rounds.ToString();
-        Animation anim = GetComponent<Animation>();
-        anim.Play();
+        // Animation anim = GetComponent<Animation>();
+        // anim.Play();
     }
 
     public void Retry()
