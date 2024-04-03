@@ -97,6 +97,14 @@ public class Node : MonoBehaviour
         isUpgraded = true;
     }
 
+    public void SellTurret()
+    {
+        PlayerStats.Money += turretBluePrint.sellCost;
+        Destroy(turret);
+        turret = null;
+        isUpgraded = false;
+    }
+
     private void OnMouseEnter()
     {
         if (EventSystem.current.IsPointerOverGameObject())

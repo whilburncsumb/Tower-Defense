@@ -15,7 +15,7 @@ public class NodeUI : MonoBehaviour
     {
         this.Target = target;
         transform.position = target.GetBuildPosition();
-        if (target.isUpgraded)
+        if (!target.isUpgraded)
         {
             upgradeCost.text = "$" + target.turretBluePrint.upgradeCost;
             upgradeButton.interactable = true;
@@ -41,8 +41,9 @@ public class NodeUI : MonoBehaviour
         BuildManager.instance.DeselectNode();
     }
 
-    public void TestFunction()
+    public void Sell()
     {
-        Debug.Log("Button clicked!");
+        Target.SellTurret();
+        Hide();
     }
 }
