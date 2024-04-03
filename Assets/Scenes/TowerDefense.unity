@@ -2827,7 +2827,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236988400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &236988400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6637,12 +6649,18 @@ MonoBehaviour:
   standardTurret:
     prefab: {fileID: 5547715930486597485, guid: fd1f3e5b29df0f04e9c0ea9ebe4f1f27, type: 3}
     cost: 100
+    upgradedPrefab: {fileID: 5547715930486597485, guid: 7e9ca0808782b0e4a81b28662f3b0773, type: 3}
+    upgradeCost: 60
   missileTurret:
     prefab: {fileID: 63496985811489948, guid: db146e9b57cf94f6f807398a53210500, type: 3}
     cost: 250
+    upgradedPrefab: {fileID: 63496985811489948, guid: fe755c701c0b95b4c8541edc6f48e839, type: 3}
+    upgradeCost: 150
   laserTurret:
     prefab: {fileID: 7400812316605320040, guid: 37fc39c4b9c864d6395e2221ccd7779e, type: 3}
     cost: 350
+    upgradedPrefab: {fileID: 7400812316605320040, guid: c0206b1210627e94b8787dbdf0347c28, type: 3}
+    upgradeCost: 200
 --- !u!1001 &547063231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15457,7 +15475,7 @@ Transform:
   m_GameObject: {fileID: 1424154598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 0.5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19104,7 +19122,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847167394}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -19116,7 +19134,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847167394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 44acd4b30a3adb34f84af4da23647ca5, type: 2}
   m_CullingMode: 0
@@ -21029,7 +21047,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118431713}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
