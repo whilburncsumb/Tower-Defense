@@ -101,8 +101,10 @@ public class Node : MonoBehaviour
     {
         PlayerStats.Money += turretBluePrint.sellCost;
         Destroy(turret);
-        turret = null;
+        turretBluePrint = null;
         isUpgraded = false;
+        GameObject effect = Instantiate(_buildManager.sellEffect, GetBuildPosition(), Quaternion.identity);
+        Destroy(effect, 3f);
     }
 
     private void OnMouseEnter()

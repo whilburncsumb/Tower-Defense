@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     public float minY = 10f;
     public float maxZ = 72f;
     public float minZ = -10f;
-    private bool movementEnabled = true;
+    // private bool movementEnabled = true;
 
     public float panBorderthickness = 10f;
     // Start is called before the first frame update
@@ -29,11 +29,12 @@ public class CameraController : MonoBehaviour
             this.enabled = false;
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            movementEnabled = !movementEnabled;
-        }
-        if (movementEnabled)
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     movementEnabled = !movementEnabled;
+        // }
+        // if (movementEnabled)
+        if(true)
         {
             //WASD movement
             transform.Translate(new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"))*panSpeed * Time.deltaTime,Space.World);
