@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 public class TDPauseMenu : MonoBehaviour
 {
     public GameObject UI;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SceneFader fader;
+    public string menu = "TD Menu";
 
     // Update is called once per frame
     void Update()
@@ -37,12 +34,14 @@ public class TDPauseMenu : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        fader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void Menu()
     {
-        Debug.Log("Open menu");
+        Toggle();
+        fader.FadeTo(menu);
     }
     
 }
