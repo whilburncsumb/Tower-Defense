@@ -15,10 +15,4 @@ public class PlayerStats : MonoBehaviour
         Lives = startingLives;
         Rounds = 0;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

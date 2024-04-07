@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     public float speed = 70f;
     public int damage = 50;
     public float explosionRadius = 0f;
-    // Start is called before the first frame update
+    
     public void Seek(GameObject target_)
     {
         this.target = target_;
