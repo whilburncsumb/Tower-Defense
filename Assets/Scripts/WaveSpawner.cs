@@ -12,11 +12,18 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private int waveIndex = 0;
     public Text waveCountdownText;
+    public GameLogic gameLogic;
     private void Update()
     {
         if (enemiesAlive > 0)
         {
             return;
+        }
+
+        if (waveIndex == waves.Length)
+        {
+            gameLogic.WinLevel();
+            this.enabled = false;
         }
         
         if (countdown <= 0)
@@ -34,24 +41,18 @@ public class WaveSpawner : MonoBehaviour
     {
         PlayerStats.Rounds++;
         Wave wave = waves[waveIndex];
+        enemiesAlive = wave.count;
         for (int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1/wave.rate);
         }
         waveIndex++;
-        if (waveIndex == waves.Length)
-        {
-            Debug.Log("Level complete!");
-            this.enabled = false;
-        }
     }
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        enemiesAlive++;
     }
-    
     
 }

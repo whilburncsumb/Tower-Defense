@@ -31,7 +31,9 @@ public class CameraController : MonoBehaviour
         {
             //WASD movement
             transform.Translate(new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"))*panSpeed * Time.deltaTime,Space.World);
-            MouseMovement();
+            // MouseMovement();
+            MouseZoom();
+            CameraConstraints();
         }
         
     }
@@ -54,12 +56,19 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
-        //Zoom in/out
-        //transform.Translate(Vector3.up * Input.GetAxis("Mouse ScrollWheel") * panSpeed * Time.deltaTime,Space.World);
+    }
 
+    private void MouseZoom(){
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         Vector3 pos = transform.position;
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        transform.position = pos;
+    }
+
+    private void CameraConstraints()
+    {
+        Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);

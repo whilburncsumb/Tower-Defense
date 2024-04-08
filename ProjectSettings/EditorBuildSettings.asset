@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TD Menu.unity
     guid: cdd514cc99a8e314f962608938906a7d
   - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: e93e02b8c6809244aaa64c04cbe7f14a
+  - enabled: 1
     path: Assets/Scenes/TowerDefense.unity
     guid: a5e3010df81a147c3a5238622fb43722
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: c63da774c9cd6314397c1320361eb000
   m_configObjects: {}

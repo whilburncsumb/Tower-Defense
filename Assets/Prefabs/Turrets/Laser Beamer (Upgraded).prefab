@@ -10057,7 +10057,7 @@ MonoBehaviour:
   glow1: {fileID: 4340753797649035039}
   glow2: {fileID: 863337373726298323}
   damageOverTime: 50
-  slowPercentage: 0.35
+  slowPercentage: 0.75
   enemyTag: Enemy
   partToRotate: {fileID: 919563013333176729}
   firePoint: {fileID: 3966911437011862433}

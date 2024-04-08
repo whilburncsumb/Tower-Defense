@@ -6,6 +6,10 @@ public class GameLogic : MonoBehaviour
 {
     public static bool GameIsOver;
     public GameObject gameOverUI;
+    public GameObject completeLevelUI;
+    public string nextLevel = "Level2";
+    public int levelToUnlock = 2;
+    // public SceneFader fader;
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +38,13 @@ public class GameLogic : MonoBehaviour
 
     private void EndGame()
     {
-        Debug.Log("Game Over!");
         GameIsOver = true;
         gameOverUI.SetActive(true);
+    }
+
+    public void WinLevel()
+    {
+        GameIsOver = true;
+        completeLevelUI.SetActive(true);
     }
 }

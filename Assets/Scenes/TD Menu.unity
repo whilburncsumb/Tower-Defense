@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0065f585974174699f6766a3ea83fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: TowerDefense
+  levelToLoad: LevelSelect
   fader: {fileID: 1942416621}
 --- !u!4 &334621409
 Transform:
