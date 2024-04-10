@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using System.Net;
 using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
@@ -7,12 +9,20 @@ public class WaveSpawner : MonoBehaviour
     public static int enemiesAlive = 0;
     public Wave[] waves;
     public Transform spawnPoint;
+    public Transform endPoint;
+    public static Transform destination;
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
     [SerializeField]
     private int waveIndex = 0;
     public Text waveCountdownText;
     public GameLogic gameLogic;
+
+    private void Start()
+    {
+        destination = endPoint;
+    }
+
     private void Update()
     {
         if (enemiesAlive > 0)
@@ -52,7 +62,7 @@ public class WaveSpawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject e = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
     
 }

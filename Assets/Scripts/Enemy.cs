@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour
     [Header("Other")] 
     public GameObject deathEffect;
     public Image healthBar;
-    private bool isDead = false;
+    [HideInInspector]
+    public bool isDead = false;
 
     private void Start()
     {
