@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
@@ -9,7 +10,8 @@ public class GameLogic : MonoBehaviour
     public GameObject completeLevelUI;
     public string nextLevel = "Level2";
     public int levelToUnlock = 2;
-    // public SceneFader fader;
+    public Camera _camera;
+    public Transform loseCameraPos;
     
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,7 @@ public class GameLogic : MonoBehaviour
 
     private void EndGame()
     {
+        _camera.GetComponent<CameraController>().TriggerCameraTransition(loseCameraPos);
         GameIsOver = true;
         gameOverUI.SetActive(true);
     }

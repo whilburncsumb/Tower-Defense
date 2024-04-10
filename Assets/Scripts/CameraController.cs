@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     public float minZ = -10f;
 
     public float panBorderthickness = 10f;
+    public CinemachineVirtualCamera cinemachineCamera;
+    public AnimationCurve transitionCurve;
 
     void Update()
     {
@@ -22,11 +24,6 @@ public class CameraController : MonoBehaviour
             this.enabled = false;
             return;
         }
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     movementEnabled = !movementEnabled;
-        // }
-        // if (movementEnabled)
         if(true)
         {
             //WASD movement
@@ -74,4 +71,33 @@ public class CameraController : MonoBehaviour
         pos.z = Mathf.Clamp(pos.z, minZ, maxZ);
         transform.position = pos;
     }
+    
+    public void TriggerCameraTransition(Transform targetTransform)
+    {
+        StartCoroutine(TransitionCamera(targetTransform));
+    }
+
+    private IEnumerator TransitionCamera(Transform endPoint)
+    {
+        float elapsed = 0f;
+        float transitionDuration = 2f;
+        Vector3 initialPosition = transform.position;
+        Quaternion initialRotation = transform.rotation;
+
+        while (elapsed < transitionDuration)
+        {
+            float t = transitionCurve.Evaluate(elapsed / transitionDuration);
+
+            transform.position = Vector3.Lerp(initialPosition, endPoint.position, t);
+            transform.rotation = Quaternion.Lerp(initialRotation, endPoint.rotation, t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the camera reaches the final position and rotation exactly
+        transform.position = endPoint.position;
+        transform.rotation = endPoint.rotation;
+    }
+
 }
