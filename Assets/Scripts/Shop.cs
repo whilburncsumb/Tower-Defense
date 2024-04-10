@@ -21,19 +21,19 @@ public class Shop : MonoBehaviour
     
     public void SelectStandardTurret()
     {
-        Debug.Log("Standard turret selected");
+        // Debug.Log("Standard turret selected");
         _buildManager.SelectTurretToBuild(standardTurret);
     }
     
     public void SelectMissileTurret()
     {
-        Debug.Log("Missile turret selected");
+        // Debug.Log("Missile turret selected");
         _buildManager.SelectTurretToBuild(missileTurret);
     }
 
     public void SelectLaserTurret()
     {
-        Debug.Log("Laser turret selected");
+        // Debug.Log("Laser turret selected");
         _buildManager.SelectTurretToBuild(laserTurret);
     }
 }
