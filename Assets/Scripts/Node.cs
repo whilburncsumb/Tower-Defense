@@ -62,7 +62,7 @@ public class Node : MonoBehaviour
     {
         if (PlayerStats.Money < blueprint.cost)
         {
-            Debug.Log("Not enough munny to build that. lol");
+            // Debug.Log("Not enough munny to build that. lol");
             return;
         }
         PlayerStats.Money -= blueprint.cost;
@@ -79,7 +79,7 @@ public class Node : MonoBehaviour
     {
         if (PlayerStats.Money < turretBluePrint.upgradeCost)
         {
-            Debug.Log("Not enough munny to upgrade that.");
+            // Debug.Log("Not enough munny to upgrade that.");
             return;
         }
         PlayerStats.Money -= turretBluePrint.upgradeCost;
